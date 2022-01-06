@@ -11,67 +11,60 @@ const highscored = document.querySelector('.highscored');
 let highScores;
 
 //Generate random number
-function randomNum() {
-    //Calculate random number from 1-? detaljno provjeriti
-    const randomNumber = Math.round(Math.random() * 50) + 1;
-    console.log(randomNumber);
-    
+const randomNumber = Math.round(Math.random() * 50) + 1;
+console.log(randomNumber);
 
-    for(let i =0; i < btns.length; i++) {
-        btns[i].addEventListener('click', (e) => {
-             
-            // if(btns[i].classList.contains('again')){
-            //     //Refresh page and clear inputs, storage stays
-            //     clearAll();
-                
-            //Checking if any button contains class check and if do
-            if(btns[i].classList.contains('check')){
-                let inputNum = input.value;
-                //Check if input number is up or down by one
-                if(inputNum == randomNumber + 1 || inputNum == randomNumber - 1){
-                    message.innerHTML = `Pretty warm right thurrrr right thurrrr`;
-                //If input is greater than generated hidden number
-                } else if( inputNum > randomNumber ){
-                    message.innerHTML = `Lower`;
-                //If input is less than generated hidden number
-                } else if( inputNum < randomNumber ){
-                    message.innerHTML = `Higher`;
-                //If number is guessed
+//Loop through buttons and adding click event
+for(let i =0; i < btns.length; i++) {
+    btns[i].addEventListener('click', (e) => {
+        
+        //Checking if any button contains class check and if do
+        if(btns[i].classList.contains('check')){
+            let inputNum = input.value;
+            //Check if input number is up or down by one
+            if(inputNum == randomNumber + 1 || inputNum == randomNumber - 1){
+                message.innerHTML = `Pretty warm right thurrrr right thurrrr`;
+            //If input is greater than generated hidden number
+            } else if( inputNum > randomNumber ){
+                message.innerHTML = `Lower`;
+            //If input is less than generated hidden number
+            } else if( inputNum < randomNumber ){
+                message.innerHTML = `Higher`;
+            //If number is guessed
+            } else {
+                //Change message
+                message.innerHTML = `Success!!!`;
+                //Display hidden number
+                number.innerHTML = randomNumber;
+                //Change background when number is guessed
+                body.style.background = 'Green';
+                //Update score
+                score.innerHTML = randomNumber;
+                //Change title
+                guessTitle.innerHTML = `Correct!`;
+
+
+                //Check if array exists in localStorage
+                if (localStorage.getItem('highscores')) {
+                    highScores = JSON.parse(localStorage.getItem('highscores'));
+
                 } else {
-                    //Change message
-                    message.innerHTML = `Success!!!`;
-                    //Display hidden number
-                    number.innerHTML = randomNumber;
-                    //Change background when number is guessed
-                    body.style.background = 'Green';
-                    //Update score
-                    score.innerHTML = randomNumber;
-                    //Change title
-                    guessTitle.innerHTML = `Correct!`;
-                   
-                    
-                    //Check if array exists in localStorage
-                    if (localStorage.getItem('highscores')) {
-                        highScores = JSON.parse(localStorage.getItem('highscores'));
-                        
-                    } else {
-                        //Set empty array
-                        highScores = [];
-                    }
+                    //Set empty array
+                    highScores = [];
+                }
 
-                    //Update array with new values
-                    highScores.push(randomNumber);
-                    localStorage.setItem('highscores', JSON.stringify(highScores));
-                    bigestNum();
-                }   
-            } else if (btns[i].classList.contains('reset')){
-                    //Clear storage
-                    localStorage.clear();
+                //Update array with new values
+                highScores.push(randomNumber);
+                localStorage.setItem('highscores', JSON.stringify(highScores));
+                bigestNum();
             }
-        });
-    } 
-}
-randomNum();
+        //Reset all button    
+        } else if (btns[i].classList.contains('reset')){
+                //Clear storage
+                localStorage.clear();
+        }
+    });
+} 
 
 //Refresh page and clear inputs
 function clearAll() {
