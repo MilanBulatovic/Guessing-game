@@ -1,9 +1,6 @@
 # Guessing-game
 
-#Javascript game. 
+#Javascript game
 
 #Local storage
 
-#Functions
-
-#Logic
