@@ -12,7 +12,7 @@ let highScores;
 
 //Generate random number
 
-//Random number from 1-? detaljno provjeriti
+//Random number from 1-51
 const randomNumber = Math.round(Math.random() * 50) + 1;
 console.log(randomNumber);
 
