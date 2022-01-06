@@ -101,7 +101,8 @@ function bigestNum(){
         //->Loop through values
         for(let i = 0; i < final.length; i++){
             //->Display highest value
-            highscored.innerHTML = Math.max(...final);
+             //Change background when number is guessed
+            displayMessage(highscored, Math.max(...final));
         } 
     }
 }
