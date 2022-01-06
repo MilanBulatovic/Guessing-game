@@ -19,13 +19,9 @@ function randomNum() {
 
     for(let i =0; i < btns.length; i++) {
         btns[i].addEventListener('click', (e) => {
-             
-            if(btns[i].classList.contains('again')){
-                //Refresh page and clear inputs, storage stays
-                clearAll();
-                
+        
             //Checking if any button contains class check and if do
-            } else if(btns[i].classList.contains('check')){
+           if(btns[i].classList.contains('check')){
                 let inputNum = input.value;
                 //Check if input number is up or down by one
                 if(inputNum == randomNumber + 1 || inputNum == randomNumber - 1){
@@ -64,9 +60,6 @@ function randomNum() {
                     localStorage.setItem('highscores', JSON.stringify(highScores));
                     bigestNum();
                 }   
-            } else if (btns[i].classList.contains('reset')){
-                    //Clear storage
-                    localStorage.clear();
             }
         });
     } 
@@ -77,6 +70,11 @@ randomNum();
 function clearAll() {
     //Refresh browser
     window.location.reload();
+}
+
+//Clear Storage
+function resetAll(){
+localStorage.clear();
 }
 
 //Function that finds biggest number in localStorage array
