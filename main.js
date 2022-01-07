@@ -45,35 +45,13 @@ for(let i =0; i < btns.length; i++) {
         if(btns[i].classList.contains('check')){
             let inputNum = input.value;
             //Check if input number is up or down by one
-            if(inputNum == randomNumber + 1 || inputNum == randomNumber - 1){
-                displayMessage(message, `Pretty warm right thurrrr right thurrrr`);
-            //If input is greater than generated hidden number
-            } else if( inputNum > randomNumber ){
-                displayMessage(message, `Lower`);
-            //If input is less than generated hidden number
-            } else if( inputNum < randomNumber ){
-                displayMessage(message, `Higher`);
-            //If number is guessed
-            } else {
-                //Change message
-                displayMessage(message, `Success!`);
-                //Display hidden number
-                displayMessage(number, randomNumber);
-                //Change background when number is guessed
-                body.style.background = 'Green';
-                //Update score
-                displayMessage(score, randomNumber);
-                //Change title
-                displayMessage(guessTitle, `Correct`);
-                
-                //Check if array exists in localStorage
-                (localStorage.getItem('highscores')) ? highScores = JSON.parse(localStorage.getItem('highscores')) : highScores = [];
-
-                //Update array with new values
-                highScores.push(randomNumber);
-                localStorage.setItem('highscores', JSON.stringify(highScores));
-                bigestNum();
-            }   
+                inputNum == randomNumber + 1 || inputNum == randomNumber - 1 ?
+                displayMessage(message, `Pretty warm right thurrrr right thurrrr`) :
+                //If input is greater than generated hidden number
+                inputNum > randomNumber ? displayMessage(message, `Lower`) :
+                //If input is less than generated hidden number
+                inputNum < randomNumber ? displayMessage(message, `Higher`) :
+                rollOut();
         } else if (btns[i].classList.contains('reset')){
                 //Clear storage
                 localStorage.clear();
@@ -108,6 +86,34 @@ function bigestNum(){
 }
 bigestNum();
 
+// function randomRange(myMin, myMax) {
+//     // Only change code below this line
+//     return Math.floor(Math.random() * (myMax - myMin + 1)) + myMin;
+//     // Only change code above this line
+//   }
+//   console.log(randomRange(2, 19));
 
+//   //const a = parseInt("007");
+//   //console.log(typeof a);
+//   const a = parseInt("11", 5);
+//   console.log(a);
 
+function rollOut( ) {                   
+    displayMessage(message, `Success!`);
+    //Display hidden number
+    displayMessage(number, randomNumber);
+    //Change background when number is guessed
+    body.style.background = 'Green';
+    //Update score
+    displayMessage(score, randomNumber);
+    //Change title
+    displayMessage(guessTitle, `Correct`);
 
+    //Check if array exists in localStorage
+    (localStorage.getItem('highscores')) ? highScores = JSON.parse(localStorage.getItem('highscores')) : highScores = [];
+
+    //Update array with new values
+    highScores.push(randomNumber);
+    localStorage.setItem('highscores', JSON.stringify(highScores));
+    bigestNum();
+}
