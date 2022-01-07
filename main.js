@@ -22,14 +22,19 @@ for(let i =0; i < btns.length; i++) {
         //Checking if any button contains class .check and if do
         if(btns[i].classList.contains('check')){
             let inputNum = input.value;
-            //Check if input number is up or down by one
+            
+                //Check if input number is up or down by one
                 inputNum == randomNumber + 1 || inputNum == randomNumber - 1 ?
-                displayMessage(message, `Pretty warm right thurrrr right thurrrr`) :
+                displayMessage(message, `Pretty warm right thurrrr, right thurrrr`) :
                 //If input is greater than generated hidden number
                 inputNum > randomNumber ? displayMessage(message, `Lower`) :
                 //If input is less than generated hidden number
                 inputNum < randomNumber ? displayMessage(message, `Higher`) :
+                //If input is empty
+                !inputNum ? displayMessage(message, `You must enter number`) :
+                //Run function if number is guessed
                 rollOut();
+            
         } else if (btns[i].classList.contains('reset')){
                 //Clear storage
                 localStorage.clear();
@@ -38,15 +43,10 @@ for(let i =0; i < btns.length; i++) {
 }
 
 //Function display message
-function displayMessage(className, output){
-    className.innerHTML = output;
-}
+const displayMessage = (className, output) => className.innerHTML = output;
 
 //Refresh page and clear inputs
-function clearAll() {
-    //Refresh browser
-    window.location.reload();
-}
+const clearAll = () => window.location.reload();
 
 //Function that finds biggest number in localStorage array
 function bigestNum(){
@@ -57,7 +57,6 @@ function bigestNum(){
         //->Loop through values
         for(let i = 0; i < final.length; i++){
             //->Display highest value
-             //Change background when number is guessed
             displayMessage(highscored, Math.max(...final));
         } 
     }
