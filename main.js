@@ -63,7 +63,7 @@ function bigestNum(){
 }
 bigestNum();
 
-//Displaying messages on button check if number is guessed
+//Function that fires actions when number is guessed
 function rollOut( ) {                   
     displayMessage(message, `Success!`);
     //Display hidden number
